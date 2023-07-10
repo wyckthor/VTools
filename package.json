@@ -1,0 +1,15 @@
+{
+  "name": "com.vhon.vtools",
+  "version": "1.0.0",
+  "displayName": "_VTools",
+  "description": "VHon Tools",
+  "unity": "2020.3",
+  "author": {
+    "name": "Victor Honorio",
+    "email": "victor.honorio@gmail.com",
+    "url": "http://"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6"
+  }
+}
