@@ -17,7 +17,7 @@ namespace VHon
         static IEnumerator DelayRoutine(float duration, Action callback)
         {
             yield return new WaitForSecondsRealtime(duration);
-            if (callback != null) callback();
+            callback?.Invoke();
         }
         // ------------------------------------------------------------------------------------------------------------------------------        
     }

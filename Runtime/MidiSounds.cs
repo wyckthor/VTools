@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace VHon
 {
-    public static class Sounds
+    public static class MidiSounds
     {
         //===============================================================================================================================
-        // this.AddSound(440, 0.12f, 0.4f);
+        // this.PlayMidi(440, 0.12f, 0.4f);
         //===============================================================================================================================
-        public static void AddSound<T>(this T obj, float frequency, float volume, float duration) where T : Component
+        public static void PlayMidi<T>(this T obj, float frequency, float volume, float duration) where T : Component
         {
             int sampleRate = 44100;
             AudioClip clip = AudioClip.Create("NewSound", sampleRate, 1, sampleRate, false);
@@ -27,13 +27,12 @@ namespace VHon
             clip.SetData(data, 0);
 
             // Find or create AudioSource -----------------------
-            AudioSource audioSource = obj.GetComponent<AudioSource>();
-            if (audioSource == null) audioSource = obj.gameObject.AddComponent<AudioSource>();
+            AudioSource audioSource = obj.GetComponent<AudioSource>() ?? obj.gameObject.AddComponent<AudioSource>();
 
             // Play Clip ----------------------------------------
             audioSource.volume = 1;
             audioSource.PlayOneShot(clip, volume);
-            _Basic.GetMono(obj.gameObject).StartCoroutine(AudioFadeOut(audioSource, duration));
+            Mono.Get(obj.gameObject).StartCoroutine(AudioFadeOut(audioSource, duration));
         }
 
         // ------------------------------------------------------------------------------------------------------------------------------        

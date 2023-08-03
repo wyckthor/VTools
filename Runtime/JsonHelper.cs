@@ -14,20 +14,18 @@ namespace VHon
 
         public static string ToJson<T>(List<T> list)
         {
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = list;
+            Wrapper<T> wrapper = new() { Items = list };
             return JsonUtility.ToJson(wrapper);
         }
 
         public static string ToJson<T>(List<T> list, bool prettyPrint)
         {
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = list;
+            Wrapper<T> wrapper = new() { Items = list };
             return JsonUtility.ToJson(wrapper, prettyPrint);
         }
 
         [Serializable]
-        private class Wrapper<T>
+        class Wrapper<T>
         {
             public List<T> Items;
         }

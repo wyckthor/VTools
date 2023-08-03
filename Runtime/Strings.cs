@@ -7,10 +7,9 @@ namespace VHon
         //===============================================================================================================================
         public static int Parse(this string _toParse, string _separator)
         {
-            int number = 0;
-            string[] separators = new string[] {_separator};
+            string[] separators = new string[] { _separator };
             string[] parsed = _toParse.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
-            int.TryParse(parsed[0], out number);
+            int.TryParse(parsed[0], out int number);
             return number;
         }
 

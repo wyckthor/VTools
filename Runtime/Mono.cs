@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace VHon
 {
-    public static class _Basic
+    public static class Mono
     {
         // ------------------------------------------------------------------------------------------------------------------------------        
-        public static MonoBehaviour GetMono(GameObject obj)
+        public static MonoBehaviour Get(GameObject obj)
         {
             MonoBehaviour mono = obj.GetComponent<MonoBehaviour>();
             if (mono == null)
             {
                 GameObject parentObj = obj.transform.parent.gameObject;
                 if (parentObj == null) Debug.Log($"VTools: No monobehaviour found!");
-                else mono = GetMono(parentObj);
+                else mono = Get(parentObj);
             }            
             return mono;
         }

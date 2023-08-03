@@ -5,34 +5,34 @@ namespace VHon
 {
     public static class Timers
     {
-        static List<Timer> timers = new List<Timer>();
+        static readonly List<TimerData> allTimers = new();
 
         //===============================================================================================================================
-        // this.SetTimer("TimerName", 10);
+        // this.TimerSet(10);
+        // this.TimerSet(10, "TimerName");
         //===============================================================================================================================
-        public static void SetTimer<T>(this T obj, string _ID, float targetTime) where T : Component
+        public static void TimerSet<T>(this T obj, float targetTime, string _ID = "default") where T : Component
         {
             string ID = obj.gameObject.GetInstanceID() + "_" + _ID;
 
-            Timer timer = new Timer(ID, targetTime);
-            Timer existingTimer = null;
-            for (int i = 0; i < timers.Count; i++)
-            {
-                if (timers[i].ID == ID) existingTimer = timers[i];
-            }
+            TimerData timer = new(ID, targetTime);
+            
+            TimerData existingTimer = null;
+            foreach (TimerData tmr in allTimers) if (tmr.ID == ID) existingTimer = tmr;
 
-            if (existingTimer == null) timers.Add(timer);
+            if (existingTimer == null) allTimers.Add(timer);
         }
 
         //===============================================================================================================================
+        // this.TimerUp();
         // this.TimerUp("TimerName");
         //===============================================================================================================================
-        public static bool TimerUp<T>(this T obj, string _ID) where T : Component
+        public static bool TimerUp<T>(this T obj, string _ID = "default") where T : Component
         {
             string ID = obj.gameObject.GetInstanceID() + "_" + _ID;
 
-            Timer timer = null;
-            foreach (var tmr in timers) if (tmr.ID == ID) timer = tmr;
+            TimerData timer = null;
+            foreach (TimerData tmr in allTimers) if (tmr.ID == ID) timer = tmr;
 
             if (timer != null)
             {
@@ -47,13 +47,13 @@ namespace VHon
     }
 
     //===================================================================================================================================
-    class Timer
+    class TimerData
     {    
         public string ID;
         public float time;
         public float targetTime;
 
-        public Timer(string _ID, float _targetTime)
+        public TimerData(string _ID, float _targetTime)
         {
             ID = _ID;
             targetTime = _targetTime;
