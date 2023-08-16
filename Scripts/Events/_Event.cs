@@ -9,7 +9,7 @@ namespace VHon
         List<_EventListener> listeners = new();
 
         // ------------------------------------------------------------------------------------------------------------------------             
-        public void Raise(int value)
+        public void Raise()
         {
             for (var i = listeners.Count - 1; i >= 0; i--) listeners[i].OnEventRaised();
         }
