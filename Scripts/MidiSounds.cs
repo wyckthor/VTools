@@ -27,7 +27,8 @@ namespace VHon
             clip.SetData(data, 0);
 
             // Find or create AudioSource -----------------------
-            AudioSource audioSource = obj.gameObject.GetComponent<AudioSource>() ?? obj.gameObject.AddComponent<AudioSource>();
+            AudioSource audioSource = obj.gameObject.GetComponent<AudioSource>();
+            if (audioSource == null) audioSource = obj.gameObject.AddComponent<AudioSource>();
 
             // Play Clip ----------------------------------------
             audioSource.volume = 1;

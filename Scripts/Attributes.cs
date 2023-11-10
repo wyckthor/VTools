@@ -88,4 +88,18 @@ public class BlockDrawer : DecoratorDrawer
     public override float GetHeight() => base.GetHeight() + EditorGUIUtility.singleLineHeight * 1.1f;
 }
 #endif
+
 // ------------------------------------------------------------------------------------------------------------------------
+    // #if UNITY_EDITOR        
+    // [CustomEditor(typeof(PlayerSO))]
+    // public class ButtonEditor : Editor
+    // {
+    //     public override void OnInspectorGUI()
+    //     {
+    //         base.OnInspectorGUI();                
+    //         if (GUILayout.Button("Init")) ((PlayerSO)target).Init();
+    //         if (GUILayout.Button("Reset")) ((PlayerSO)target).Reset();
+    //     }
+    // }
+    // #endif
+// ------------------------------------------------------------------------------------------------------------------------        
