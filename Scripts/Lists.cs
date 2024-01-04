@@ -18,24 +18,12 @@ namespace VHon
                 int effectiveOffset = offset % count; // Get the effective offset considering list length
                 if (effectiveOffset < 0) effectiveOffset += count; // Adjust negative offset
 
-                List<T> removedItems;
-
                 if (effectiveOffset == 0) return; // No need to shift if offset is 0
 
-                if (effectiveOffset <= count / 2)
-                {
-                    removedItems = list.GetRange(0, effectiveOffset);
-                    list.RemoveRange(0, effectiveOffset);
-                    list.AddRange(removedItems);
-                }
-                else
-                {
-                    effectiveOffset = count - effectiveOffset; // Calculate the opposite direction
-                    removedItems = list.GetRange(count - effectiveOffset, effectiveOffset);
-                    list.RemoveRange(count - effectiveOffset, effectiveOffset);
-                    list.InsertRange(0, removedItems);
-                }                
-            }
+                List<T> removedItems = list.GetRange(count - effectiveOffset, effectiveOffset);
+                list.RemoveRange(count - effectiveOffset, effectiveOffset);
+                list.InsertRange(0, removedItems);
+            }            
         }
         // ------------------------------------------------------------------------------------------------------------------------------        
     }
