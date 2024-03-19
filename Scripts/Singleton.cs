@@ -5,7 +5,7 @@ namespace VHon
     public static class Singleton
     {
         //===============================================================================================================================
-        // internal static Singleton Instance;
+        // internal static T Instance;
         // void Awake() => Instance = this.TrySingleton(Instance);
         //===============================================================================================================================
         public static T TrySingleton<T>(this T obj, T Instance) where T : MonoBehaviour
